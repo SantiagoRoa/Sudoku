@@ -1,4 +1,18 @@
-#logo_ud {
-    height: 15%;
-    width: 15%;
+#logo_UD {
+    height: 40%;
+    width: 40%;
+}
+
+.row-content {
+    margin: 0px auto;
+    border-bottom: 1px ridge;
+    min-height: 400px;
+}
+
+.jumbotron {
+    padding: 15px;
+    background: darkslategray;
+    color: white;
+    font-size: 200%;
+    color:floralwhite
 }
