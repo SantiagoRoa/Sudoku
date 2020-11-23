@@ -1,0 +1,28 @@
+{
+  "dependencies": {
+    "bootstrap": "^4.5.3",
+    "popper.js": "^1.16.1"
+  },
+  "name": "sudoku",
+  "version": "1.0.0",
+  "description": "Sudoku Web",
+  "main": "index.html",
+  "devDependencies": {
+    "lite-server": "^2.6.1"
+  },
+  "scripts": {
+	"start": "npm run lite",
+    "test": "echo \"Error: no test specified\" && exit 1",
+	"lite": "lite-server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SantiagoRoa/Sudoku.git"
+  },
+  "author": "Santiago Roa - Alejandro Gonzalez - Marcela Porras",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SantiagoRoa/Sudoku/issues"
+  },
+  "homepage": "https://github.com/SantiagoRoa/Sudoku#readme"
+}
