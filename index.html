@@ -20,76 +20,75 @@
     <header class="jumbotron">
         <div class="container">
             <div class="row align-items-center">
-                <div class="col-12 col-sm-10">
+                <div class="col-12 col-sm-10 text-md-left text-center">
                     <h1>Sudoku</h1>
                 </div>
-                <div class="col-12 col-sm">
+                <div class="col d-none d-md-block">
                     <img class="img-fluid" src="res/logo.png" id="logo_UD" alt="Logo UD">
                 </div>
             </div>
         </div>
 
     </header>
+
     <div class="container">
-        <div class="row">
-            <div>
+        <div class="row row-content">
+            <div class="col-12 col-sm-8">
                 <h2>
-                    Sudoku 9x9
+                    Laboratorio 2: Sudoku 9x9
                 </h2>
-                <p id="numero">
-                    test
+                <p>
+                    "Nada en absoluto tiene lugar en el universo, sin alguna regla de máximos o mínimos" <br> -Leonhard Euler
                 </p>
             </div>
 
-        </div>
-        <div>
-            <div id="tablero">
-
-            </div>
-            <div>
-                <h2>
+            <div class="col-12 col-sm-4">
+                <h4>
                     Integrantes
-                </h2>
-                <p>
-                    Nelson Santiago Roa Garzón
-                </p>
-                <p>
-                    Alejandro Sebastian González
-                </p>
-                <p>
-                    Marcela del Pilar Porras
-                </p>
-            </div>
-            <div>
-                <h2>
-                    Instrucciones
-                </h2>
-                <p>
+                </h4>
                 <ul>
-                    <li>
-                        Instrucción 1
-                    </li>
-                    <li>
-                        Instrucción 2
-                    </li>
-                    <li>
-                        Instrucción 3
-                    </li>
+                    <li>Nelson Santiago Roa Garzón</li>
+                    <li>Alejandro Sebastian González</li>
+                    <li>Marcela del Pilar Porras</li>
                 </ul>
+            </div>
+        </div>
+        <div class="row row-content">
+            <div class="col-12 col-sm-8" id="tablero">
+
+            </div>
+
+            <div class="col-12 col-sm-4">
+                <h4>
+                    Instrucciones
+                </h4>
+                <ol>
+                    <li>Hay que completar las casillas vacías con un solo número del 1 al 9</li>
+                    <li>En una misma fila no puede haber números repetidos</li>
+                    <li>En una misma columna no puede haber números repetidos</li>
+                    <li>En una misma región no puede haber números repetidos</li>
+                    <li>La solución de un sudoku es única</li>
+                </ol>
+            </div>
+        </div>
+        <div class="row row-content_2">
+            <div class="col-4">
+                <button type="button" id="resetear" class="btn">Nuevo juego</button>
+                <button type="button" id="comprobar" class="btn">Comprobar</button>
+            </div>
+            <div class="col-4">
+                <h6>
+                    Tiempo:
+                </h6>
+                <p id="tiempo">
+                    00:00
                 </p>
             </div>
-            <div>
-                <div>
-                    <button id="boton">Comprobar</button>
-                </div>
-                <div>
-                    <h2>
-                        Tiempo:
-                    </h2>
-                    <p id="temporizador">
-                        00:00
-                    </p>
-                </div>
+            <div class="col-4" id="dificultad">
+                <h5>Dificultad</h5>
+                <label><input id="facil" type="radio" name="dificultad" value="facil" checked>Fácil</label>
+                <label><input id="normal" type="radio" name="dificultad" value="normal">Normal</label>
+                <label><input id="dificil" type="radio" name="dificultad" value="dificil">Difícil</label>
             </div>
         </div>
     </div>
