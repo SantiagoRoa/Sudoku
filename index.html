@@ -10,7 +10,10 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+
+    <!-- CSS y JS personalizados-->
     <link rel="stylesheet" href="css/estilos.css">
+    <script type="text/javascript" src="js/index.js"></script>
 
     <title>Sudoku</title>
 </head>
@@ -38,7 +41,8 @@
                     Laboratorio 2: Sudoku 9x9
                 </h2>
                 <p>
-                    "Nada en absoluto tiene lugar en el universo, sin alguna regla de máximos o mínimos" <br> -Leonhard Euler
+                    "Nada en absoluto tiene lugar en el universo, sin alguna regla de máximos o mínimos" <br> -Leonhard
+                    Euler
                 </p>
             </div>
 
@@ -53,12 +57,8 @@
                 </ul>
             </div>
         </div>
-        <div class="row row-content">
-            <div class="col-12 col-sm-8" id="tablero">
-
-            </div>
-
-            <div class="col-12 col-sm-4">
+        <div class="row row-content text-">
+            <div class="col-12 col-md-4 ">
                 <h4>
                     Instrucciones
                 </h4>
@@ -70,25 +70,43 @@
                     <li>La solución de un sudoku es única</li>
                 </ol>
             </div>
+            <div class="container-fluid col-12 col-md-8" id="juego">
+                <div class="row">
+                    <div class="col-10" id="tablero">
+
+                    </div>
+                    <div class="col-2" id="contenedor_num">
+                        <p id="uno">1</p>
+                        <p id="dos">2</p>
+                        <p id="tres">3</p>
+                        <p id="cuatro">4</p>
+                        <p id="cinco">5</p>
+                        <p id="seis">6</p>
+                        <p id="siete">7</p>
+                        <p id="ocho">8</p>
+                        <p id="nueve">9</p>
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="row row-content_2">
-            <div class="col-4">
-                <button type="button" id="resetear" class="btn">Nuevo juego</button>
-                <button type="button" id="comprobar" class="btn">Comprobar</button>
+            <div class="col-4" id="dificultad">
+                <h5>Dificultad</h5>
+                <label><input id="dif_facil" type="radio" name="dificultad" value="facil" checked>Fácil</label>
+                <label><input id="dif_normal" type="radio" name="dificultad" value="normal">Normal</label>
+                <label><input id="dif_dificil" type="radio" name="dificultad" value="dificil">Difícil</label>
             </div>
             <div class="col-4">
-                <h6>
-                    Tiempo:
-                </h6>
+                <h5>
+                    Tiempo
+                </h5>
                 <p id="tiempo">
                     00:00
                 </p>
             </div>
-            <div class="col-4" id="dificultad">
-                <h5>Dificultad</h5>
-                <label><input id="facil" type="radio" name="dificultad" value="facil" checked>Fácil</label>
-                <label><input id="normal" type="radio" name="dificultad" value="normal">Normal</label>
-                <label><input id="dificil" type="radio" name="dificultad" value="dificil">Difícil</label>
+            <div class="col-4">
+                <button type="button" id="boton_iniciar" class="btn">Nuevo juego</button>
+                <button type="button" id="boton_comprobar" class="btn">Comprobar</button>
             </div>
         </div>
     </div>

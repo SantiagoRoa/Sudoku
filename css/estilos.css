@@ -1,3 +1,8 @@
+*{
+    padding: 0px;
+    margin: 0px;
+}
+
 #logo_UD {
     height: 40%;
     width: 40%;
@@ -21,5 +26,49 @@
     background: darkslategray;
     color: white;
     font-size: 200%;
-    color:floralwhite
+    color: floralwhite
+}
+
+#tablero {
+    margin-top: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: flex-start;
+    max-width:425px;
+    max-height: 374px;
+    min-width: 393px;
+    min-height: 374px;
+}
+
+#contenedor_num>p {
+    border: 1px ridge black;
+    border-radius: 20%;
+    text-align: center;
+    margin: 15px;
+    width: 35px;
+}
+
+p.seleccionado {
+    background-color: lightblue;
+}
+
+p.incorrecto {
+    color: red;
+}
+
+.celda {
+    border: 1px ridge black;
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    margin: 0px;
+}
+
+.borde_derecho {
+    border-right: 4px solid black;
+}
+
+.borde_inferior {
+    border-bottom: 4px solid black;
 }
