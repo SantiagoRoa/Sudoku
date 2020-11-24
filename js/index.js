@@ -48,11 +48,9 @@ function generarTablero(tablero) {
         celda.classList.add("celda");
         if ((celda.id > 17 && celda.id < 27) || (celda.id > 44 && celda.id < 54)) {
             celda.classList.add("borde_inferior");
-        } else if ((celda.id + 1) % 9 == 3 || (celda.id + 1) % 9 == 6) {
+        }if ((celda.id + 1) % 9 == 3 || (celda.id + 1) % 9 == 6) {
             celda.classList.add("borde_derecho");
-        }/*else if(){
-            // borde inferior y derecho0
-        }*/
+        }
 
         id("tablero").appendChild(celda);
     }
