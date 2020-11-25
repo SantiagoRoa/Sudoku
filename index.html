@@ -89,24 +89,32 @@
                 </div>
             </div>
         </div>
-        <div class="row row-content_2">
-            <div class="col-4" id="dificultad">
+        <div class="row row-content_2 text-center">
+            <div class="col-3" id="dificultad">
                 <h5>Dificultad</h5>
-                <label><input id="dif_facil" type="radio" name="dificultad" value="facil" checked>Fácil</label>
-                <label><input id="dif_normal" type="radio" name="dificultad" value="normal">Normal</label>
-                <label><input id="dif_dificil" type="radio" name="dificultad" value="dificil">Difícil</label>
+                <div id="boton_facil">
+                    <label><input id="dif_facil" type="radio" name="dificultad" value="facil" checked> Fácil</label><br>
+                </div>
+                <div id="boton_normal">
+                    <label><input id="dif_normal" type="radio" name="dificultad" value="normal"> Normal</label><br>
+                </div>
+                <div id="boton_dificil">
+                    <label><input id="dif_dificil" type="radio" name="dificultad" value="dificil"> Difícil</label>
+                </div>
             </div>
-            <div class="col-4">
+            <div class="col-6">
+                <button type="button" id="boton_iniciar" class="btn">Nuevo juego</button>
+                <button type="button" id="boton_comprobar" class="btn">Comprobar</button>
+                <button type="button" id="boton_limpiar" class="btn">Limpiar celdas</button>
+                <button type="button" id="boton_reiniciar" class="btn">Reiniciar</button>
+            </div>
+            <div class="col-3">
                 <h5>
                     Tiempo
                 </h5>
                 <p id="tiempo">
                     00:00
                 </p>
-            </div>
-            <div class="col-4">
-                <button type="button" id="boton_iniciar" class="btn">Nuevo juego</button>
-                <button type="button" id="boton_comprobar" class="btn">Comprobar</button>
             </div>
         </div>
     </div>

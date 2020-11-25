@@ -3,6 +3,12 @@
     margin: 0px;
 }
 
+@media(max-width: 500px){
+    #contenedor_num>p{
+
+    }
+}
+
 #logo_UD {
     height: 40%;
     width: 40%;
@@ -35,10 +41,10 @@
     flex-wrap: wrap;
     justify-content: center;
     align-content: flex-start;
-    max-width:425px;
-    max-height: 374px;
-    min-width: 393px;
-    min-height: 374px;
+    min-width: 340px;
+    min-height: 200px;
+    max-width: 400px;
+    max-height: 400px;
 }
 
 #contenedor_num>p {
@@ -59,16 +65,16 @@ p.incorrecto {
 
 .celda {
     border: 1px ridge black;
-    width: 40px;
-    height: 40px;
+    width: 11%;
+    height: 11%;
     text-align: center;
     margin: 0px;
 }
 
 .borde_derecho {
-    border-right: 4px solid black;
+    border-right: 4px ridge black;
 }
 
 .borde_inferior {
-    border-bottom: 4px solid black;
+    border-bottom: 4px ridge black;
 }
