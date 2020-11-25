@@ -1,4 +1,4 @@
-*{
+* {
     padding: 0px;
     margin: 0px;
 }
@@ -36,17 +36,25 @@
     justify-content: center;
     align-content: flex-start;
     min-width: 340px;
-    min-height: 200px;
+    min-height: 300px;
     max-width: 400px;
     max-height: 400px;
+}
+
+#contenedor_num {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
 }
 
 #contenedor_num>p {
     border: 1px ridge black;
     border-radius: 20%;
     text-align: center;
-    margin: 15px;
-    width: 35px;
+    padding: 0px;
+    width: 30px;
+    height: 30px;
 }
 
 p.seleccionado {
@@ -71,4 +79,17 @@ p.incorrecto {
 
 .borde_inferior {
     border-bottom: 4px ridge black;
+}
+
+@media only screen and (max-width: 438px) {
+    #contenedor_num {
+        padding-top: 10px;
+        flex-direction: row;
+    }
+    #contenedor_num>p {
+        display: flex;
+        margin: 3px;
+        padding: 10px 10px;
+        align-items: center;
+    }
 }

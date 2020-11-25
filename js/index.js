@@ -17,20 +17,51 @@ const limpio = [
 ];
 
 var cronometro = null;
+var inicio = false;
+var hayDificultad = false;
+var mSegundos = 0;
+var errores = 0;
 var numSeleccionado;
 var celdaSeleccionada;
 var desSeleccion;
-var inicio;
-var hayDificultad;
 var minutos;
 var segundos;
 var texto_minutos;
 var texto_segundos;
-var mSegundos = 0;
+
 
 window.onload = function () {
+    //Funciones a cargar después de la carga de la página
     generarTablero(limpio[0]);
     cargarCronometro();
+    cargarBotones();
+    cargarNumeros();
+}
+
+function cargarNumeros() {
+    for (let i = 0; i < id("contenedor_num").children.length; i++) {
+        id("contenedor_num").children[i].addEventListener("click", function () {
+            // Seleccionar un número a la vez
+            if (!desSeleccion) {
+                //Comprobar si número ya está seleccionado
+                if (this.classList.contains("seleccionado")) {
+                    this.classList.remove("seleccionado");
+                    numSeleccionado = null;
+                } else {
+                    for (let i = 0; i < 9; i++) {
+                        id("contenedor_num").children[i].classList.remove("seleccionado");
+                    }
+                    this.classList.add("seleccionado");
+                    numSeleccionado = this;
+                    actualizarMovimiento();
+                }
+            }
+        });
+    }
+}
+
+function cargarBotones() {
+    //Se añade eventListener a cada boton
     id("boton_iniciar").addEventListener("click", iniciarJuego);
     id("boton_comprobar").addEventListener("click", comprobar);
     id("boton_limpiar").addEventListener("click", reestablecer);
@@ -90,22 +121,94 @@ function generarTablero(tablero) {
     //Crear tablero
     let idContador = 0;
     for (let i = 0; i < 81; i++) {
+        //Crear una nueva etiqueta <p>
         let celda = document.createElement("p");
+        //Revisa si la celda debe o no estar en blanco
         if (tablero.charAt(i) != "-") {
+            //Añade la información correspondiente a la celda
             celda.textContent = tablero.charAt(i);
         } else {
-            //Prov
+            //Añadir eventListener a la celda
+            celda.addEventListener("click", function () {
+                //Si se puede seleccionar
+                if (!desSeleccion) {
+                    //Si la celda ya está seleccionada
+                    if (celda.classList.contains("seleccionado")) {
+                        //Remover seleccion
+                        celda.classList.remove("seleccionado");
+                        celdaSeleccionada = null;
+                    } else {
+                        //Deseleccionar todas las otras celdas
+                        for (let i = 0; i < 81; i++) {
+                            qsa(".celda")[i].classList.remove("seleccionado");
+                        }
+                        //Añadir seleccion y actualizar la variable
+                        celda.classList.add("seleccionado");
+                        celdaSeleccionada = celda;
+                        actualizarMovimiento();
+                    }
+                }
+            });
         }
+        //Le asigna un id a la celda
         celda.id = idContador;
+        //Pasa a la siguiente celda
         idContador++;
+        //Añade clase celda a todas las celdas
         celda.classList.add("celda");
+        //Se comprueba si la celda tiene frontera gruesa
         if ((celda.id > 17 && celda.id < 27) || (celda.id > 44 && celda.id < 54)) {
             celda.classList.add("borde_inferior");
         } if ((celda.id + 1) % 9 == 3 || (celda.id + 1) % 9 == 6) {
             celda.classList.add("borde_derecho");
         }
+        //Se añade una celda al tablero
         id("tablero").appendChild(celda);
     }
+}
+
+function actualizarMovimiento() {
+    //Se comprueba si una celda y un número y una celda están seleccionados
+    if (celdaSeleccionada && numSeleccionado) {
+        // Rellenar la celda con el número seleccionado
+        celdaSeleccionada.textContent = numSeleccionado.textContent;
+        // Si el número seleccionado coincide con la solución
+        if (comprobarCorrecto(celdaSeleccionada)) {
+            //Deseleccionar la celda
+            celdaSeleccionada.classList.remove("seleccionado");
+            numSeleccionado.classList.remove("seleccionado");
+            //Limpiar las variables seleccionadas
+            numSeleccionado = null;
+            celdaSeleccionada = false;
+        } else {
+            //if()
+            // Si el número no coincide con la solución
+            desSeleccion = true;
+            // Estilizar celda
+            celdaSeleccionada.classList.add("incorrecto");
+            setTimeout(function () {
+                errores++;
+                //Restaurar el color de la celda
+                celdaSeleccionada.classList.remove("incorrecto");
+                celdaSeleccionada.classList.remove("seleccionado");
+                numSeleccionado.classList.remove("seleccionado");
+                //Limpiar la celda y limpiar las variables
+                celdaSeleccionada.textContent = "";
+                celdaSeleccionada = null;
+            }, 1000);
+        }
+    }
+}
+
+function comprobarCorrecto(celda) {
+    //Ajustar solución basada en la dificultad
+    let solucion;
+    if (id("dif_facil").checked) solucion = facil[1];
+    else if (id("dif_normal").checked) solucion = normal[1];
+    else solucion = dificil[1];
+    //Si el número de la celda es igual al número de la solución
+    if (solucion.charAt(celda.id) == celda.textContent) return true;
+    else return false;
 }
 
 function mostrarDificultad() {
@@ -144,7 +247,6 @@ function reestablecer() {
         alert("Primero debe iniciar un nuevo juego!");
     }
 }
-
 
 function limpiarTablero() {
     let celdas = qsa(".celda"); //Acceder a las celdas
