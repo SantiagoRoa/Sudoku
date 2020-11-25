@@ -16,19 +16,32 @@ const limpio = [
     "---------------------------------------------------------------------------------"
 ];
 
-var temporizador;
+var cronometro = null;
 var numSeleccionado;
 var celdaSeleccionada;
 var desSeleccion;
 var inicio;
 var hayDificultad;
+var minutos;
+var segundos;
+var texto_minutos;
+var texto_segundos;
+var mSegundos = 0;
 
 window.onload = function () {
     generarTablero(limpio[0]);
+    cargarCronometro();
     id("boton_iniciar").addEventListener("click", iniciarJuego);
-    id("boton_comprobar").addEventListener("click", iniciarJuego);
+    id("boton_comprobar").addEventListener("click", comprobar);
     id("boton_limpiar").addEventListener("click", reestablecer);
     id("boton_reiniciar").addEventListener("click", reiniciar);
+}
+
+function cargarCronometro() {
+    texto_minutos = id("t_minutos");
+    minutos = Number(texto_minutos.innerHTML);
+    texto_segundos = id("t_segundos");
+    segundos = Number(texto_segundos.innerHTML);
 }
 
 function iniciarJuego() {
@@ -45,10 +58,20 @@ function iniciarJuego() {
         generarTablero(tablero);
         //Se oculta el cambio de dificultad
         mostrarDificultad();
-    }else alert("Seleccione la opción 'Reiniciar' para iniciar una nueva partida");
+        //Se inicia el cronometro
+        iniciarCronometro();
+    } else alert("Seleccione la opción 'Reiniciar' para iniciar una nueva partida");
 }
 
-function comprobarInicio(){
+function comprobar() {
+    //Se comprueba que exista una partida
+    if (!comprobarInicio()) alert("Primero debe iniciar un nuevo juego!");
+    else {
+        //Se comprueba si la solución es válida
+    }
+}
+
+function comprobarInicio() {
     return inicio;
 }
 
@@ -56,32 +79,9 @@ function reiniciar() {
     inicio = false;
     hayDificultad = false;
     limpiarTablero();
+    resetearCronometro();
     mostrarDificultad();
     generarTablero(limpio[0]);
-}
-
-function mostrarDificultad() {
-    let dFacil = id("boton_facil");
-    let dNormal = id("boton_normal");
-    let dDificil = id("boton_dificil");
-    //Se oculta la dificultad que no está en juego
-    if (hayDificultad) {
-        if (id("dif_facil")) {
-            dNormal.style.visibility = 'hidden';
-            dDificil.style.visibility = 'hidden';
-        } else if (id("dif_normal")) {
-            dFacil.style.visibility = 'hidden';
-            dDificil.style.visibility = 'hidden';
-        } else {
-            dFacil.style.visibility = 'hidden';
-            dNormal.style.visibility = 'hidden';
-        }
-    } else {
-        //Se muestra el selector de dificultad
-        dFacil.style.visibility = 'visible';
-        dNormal.style.visibility = 'visible';
-        dDificil.style.visibility = 'visible';
-    }
 }
 
 function generarTablero(tablero) {
@@ -108,6 +108,31 @@ function generarTablero(tablero) {
     }
 }
 
+function mostrarDificultad() {
+    let dFacil = id("boton_facil");
+    let dNormal = id("boton_normal");
+    let dDificil = id("boton_dificil");
+    //Se oculta la dificultad que no está en juego
+    if (hayDificultad) {
+        if (id("dif_facil").checked) {
+            dNormal.style.visibility = 'hidden';
+            dDificil.style.visibility = 'hidden';
+        } else if (id("dif_normal").checked) {
+            console.log("entro");
+            dFacil.style.visibility = 'hidden';
+            dDificil.style.visibility = 'hidden';
+        } else {
+            dFacil.style.visibility = 'hidden';
+            dNormal.style.visibility = 'hidden';
+        }
+    } else {
+        //Se muestra el selector de dificultad
+        dFacil.style.visibility = 'visible';
+        dNormal.style.visibility = 'visible';
+        dDificil.style.visibility = 'visible';
+    }
+}
+
 function reestablecer() {
     if (inicio) {
         let tablero;
@@ -127,7 +152,6 @@ function limpiarTablero() {
     for (let i = 0; i < celdas.length; i++) {
         celdas[i].remove();
     }
-    if (temporizador) limpiarTiempo(temporizador); //Limpiar temporizador
     //Deseleccionar números
     for (let i = 0; i < id("contenedor_num").children.length; i++) {
         id("contenedor_num").children[i].classList.remove("seleccionado");
@@ -137,7 +161,64 @@ function limpiarTablero() {
     numSeleccionado = null;
 }
 
+function obtenerTiempo(iniciarTiempo) {
+    let tiempoAcumulado = 0;
+    if (iniciarTiempo > 0) {
+        var tiempoActual = new Date();
+        tiempoAcumulado = (tiempoActual.getTime() - iniciarTiempo);
+        return tiempoAcumulado;
+    }
+    else {
+        return tiempoAcumulado;
+    }
+}
 
+function iniciarCronometro() {
+    cronometro = pararContador(cronometro);
+    var iniciarTiempo = iniciarContador();
+    cronometro = setInterval(function () {
+        var tiempoAcumulado = obtenerTiempo(iniciarTiempo);
+        if (segundos < 10) {
+            texto_segundos.innerHTML = "0" + segundos;
+        }
+        else {
+            texto_segundos.innerHTML = segundos;
+        }
+        texto_minutos.innerHTML = minutos;
+        mSegundos
+            = tiempoAcumulado;
+        if (minutos >= 59 && segundos >= 59 && mSegundos
+            > 900) {
+            cronometro = pararContador(cronometro);
+            return true;
+        }
+        if (segundos > 59) {
+            segundos = 0;
+            minutos++;
+        }
+        if (mSegundos
+            > 999) {
+            mSegundos
+                = 0;
+            segundos++;
+            iniciarCronometro();
+        }
+    }, 10);
+}
+function detenerCronometro() {
+    cronometro = pararContador(cronometro);
+    return true;
+}
+function resetearCronometro() {
+    cronometro = pararContador(cronometro);
+    segundos = 0;
+    minutos = 0;
+    cambiarTexto("t_minutos", "0");
+    cambiarTexto("t_segundos", "00");
+    return true;
+}
+
+//Funciones de miscelanea
 
 function id(ident) {
     return document.getElementById(ident);
@@ -154,4 +235,17 @@ function qs(selector) {
 
 function qsa(selector) {
     return document.querySelectorAll(selector);
+}
+
+function pararContador(cronometro) {
+    if (cronometro) {
+        clearInterval(cronometro);
+        return cronometro;
+    }
+    else return cronometro;
+}
+
+function iniciarContador() {
+    var tiempoActual = new Date();
+    return tiempoActual.getTime();
 }

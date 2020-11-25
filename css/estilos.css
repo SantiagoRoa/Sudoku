@@ -3,12 +3,6 @@
     margin: 0px;
 }
 
-@media(max-width: 500px){
-    #contenedor_num>p{
-
-    }
-}
-
 #logo_UD {
     height: 40%;
     width: 40%;
