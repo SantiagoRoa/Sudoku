@@ -100,7 +100,7 @@ function comprobar() { //Función que comprueba si el tablero actual es igual a 
     if (!comprobarInicio()) alert("Primero debe iniciar un nuevo juego!");
     else {
         //Se comprueba si la solución es válida
-        if (datos == facil[1] || datos == normal[2] || datos == dificil[1]) {
+        if (datos == facil[1] || datos == normal[1] || datos == dificil[1]) {
             alert("Correcto, ha ganado!");
             inicio = false;
             detenerCronometro();
@@ -247,6 +247,7 @@ function validarSudoku() {
         numCelda = id(i.toString()).textContent;
         datos[i] = numCelda;
     }
+    datos = datos.join('');
 }
 
 function comprobarCeldaCorrecta(celda) { //Función que comprueba si una celda corresponde a la solución
