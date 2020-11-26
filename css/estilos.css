@@ -66,7 +66,10 @@ p.incorrecto {
 }
 
 .celda {
+    display: flex;
+    justify-content: center;
     border: 1px ridge black;
+    align-items: center;
     width: 11%;
     height: 11%;
     text-align: center;
@@ -81,7 +84,7 @@ p.incorrecto {
     border-bottom: 4px ridge black;
 }
 
-@media only screen and (max-width: 438px) {
+@media only screen and (max-width: 455px) {
     #contenedor_num {
         padding-top: 10px;
         flex-direction: row;
