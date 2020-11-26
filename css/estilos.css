@@ -84,7 +84,7 @@ p.incorrecto {
     border-bottom: 4px ridge black;
 }
 
-@media only screen and (max-width: 455px) {
+@media only screen and (max-width: 436px) {
     #contenedor_num {
         padding-top: 10px;
         flex-direction: row;
@@ -96,3 +96,5 @@ p.incorrecto {
         align-items: center;
     }
 }
+
+@media only screen and(max-width:)
