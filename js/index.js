@@ -105,6 +105,7 @@ function comprobar() { //Función que comprueba si el tablero actual es igual a 
             inicio = false;
             detenerCronometro();
         } else {
+            datos = [];
             alert("Incorrecto, siga intentando");
             //Se registra un error
             if (id("dif_normal").checked || id("dif_dificil").checked) {
