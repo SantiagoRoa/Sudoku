@@ -1,5 +1,6 @@
 # Sudoku
 ## Laboratorio #2 de Programación Avanzada
+### Universidad Distrital Francisco José de Caldas
 
 ### Miembros
 - Nelson Santiago Roa Garzón
